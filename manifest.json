@@ -1,0 +1,112 @@
+{
+  "id": "airport_board",
+  "name": "Airport Board",
+  "version": "0.1.0",
+  "description": "Display live flight information near a configurable airport.",
+  "author": "FiestaBoard Team",
+  "icon": "plane",
+  "category": "transit",
+  "repository": "https://github.com/Fiestaboard/fiestaboard-plugin--airport-board",
+  "documentation": "README.md",
+  "min_refresh_seconds": 300,
+  "settings_schema": {
+    "type": "object",
+    "properties": {
+      "enabled": {
+        "type": "boolean",
+        "title": "Enabled",
+        "default": false
+      },
+      "latitude": {
+        "type": "number",
+        "title": "Airport Latitude",
+        "description": "Latitude of the airport (decimal degrees).",
+        "default": 37.6213
+      },
+      "longitude": {
+        "type": "number",
+        "title": "Airport Longitude",
+        "description": "Longitude of the airport (decimal degrees).",
+        "default": -122.379
+      },
+      "radius_deg": {
+        "type": "number",
+        "title": "Search Radius (degrees)",
+        "description": "Search radius in degrees (\u22481\u00b0 = 111 km). Default 1.0.",
+        "default": 1.0,
+        "minimum": 0.1,
+        "maximum": 5.0
+      },
+      "airport_name": {
+        "type": "string",
+        "title": "Airport Name",
+        "description": "Display name shown on the board (e.g. SFO).",
+        "default": "SFO"
+      },
+      "refresh_seconds": {
+        "type": "integer",
+        "title": "Refresh Interval (seconds)",
+        "description": "How often to poll. Anonymous tier: keep \u2265300s to stay under 400 req/day.",
+        "default": 300,
+        "minimum": 120
+      }
+    },
+    "required": [
+      "latitude",
+      "longitude"
+    ]
+  },
+  "variables": {
+    "groups": {
+      "flight": {
+        "label": "Flight"
+      }
+    },
+    "simple": {
+      "airport": {
+        "description": "Configured airport display name",
+        "type": "string",
+        "max_length": 10,
+        "group": "flight",
+        "example": "SFO"
+      },
+      "flight_count": {
+        "description": "Number of flights detected in the search area",
+        "type": "integer",
+        "max_length": 4,
+        "group": "flight",
+        "example": "12"
+      },
+      "callsign": {
+        "description": "Callsign of the nearest tracked flight",
+        "type": "string",
+        "max_length": 10,
+        "group": "flight",
+        "example": "UAL123"
+      },
+      "altitude_ft": {
+        "description": "Geometric altitude of the nearest flight in feet",
+        "type": "number",
+        "max_length": 8,
+        "group": "flight",
+        "example": "8500"
+      },
+      "origin_country": {
+        "description": "Origin country of the nearest flight",
+        "type": "string",
+        "max_length": 15,
+        "group": "flight",
+        "example": "United States"
+      }
+    }
+  },
+  "screenshots": [
+    {
+      "src": "docs/board-display.png",
+      "alt": "Airport Board displayed on a Vestaboard",
+      "caption": "Example board output using the default template",
+      "primary": true
+    }
+  ],
+  "api_docs": "https://opensky-network.org/apidoc/rest.html"
+}
