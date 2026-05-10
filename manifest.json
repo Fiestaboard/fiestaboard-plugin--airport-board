@@ -1,7 +1,7 @@
 {
   "id": "airport_board",
   "name": "Airport Board",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Display live flight information near a configurable airport.",
   "author": "FiestaBoard Team",
   "icon": "plane",
@@ -32,7 +32,7 @@
       "radius_deg": {
         "type": "number",
         "title": "Search Radius (degrees)",
-        "description": "Search radius in degrees (\u22481\u00b0 = 111 km). Default 1.0.",
+        "description": "Search radius in degrees (≈1° = 111 km). Default 1.0.",
         "default": 1.0,
         "minimum": 0.1,
         "maximum": 5.0
@@ -46,7 +46,7 @@
       "refresh_seconds": {
         "type": "integer",
         "title": "Refresh Interval (seconds)",
-        "description": "How often to poll. Anonymous tier: keep \u2265300s to stay under 400 req/day.",
+        "description": "How often to poll. Anonymous tier: keep ≥300s to stay under 400 req/day.",
         "default": 300,
         "minimum": 120
       }
@@ -108,5 +108,51 @@
       "primary": true
     }
   ],
-  "api_docs": "https://opensky-network.org/apidoc/rest.html"
+  "api_docs": "https://opensky-network.org/apidoc/rest.html",
+  "demo": {
+    "name": "Airport Board Demo",
+    "device_type": "flagship",
+    "config": {
+      "enabled": true,
+      "latitude": 37.6213,
+      "longitude": -122.379,
+      "airport_name": "SFO",
+      "radius_deg": 1.0,
+      "refresh_seconds": 300
+    },
+    "template": [
+      "Airport Board",
+      "{{airport_board.airport}}",
+      "Nearby: {{airport_board.flight_count}} aircraft",
+      "Nearest: {{airport_board.callsign}}",
+      "Alt: {{airport_board.altitude_ft}} ft",
+      "{{airport_board.origin_country}}"
+    ],
+    "line_metadata": [
+      {
+        "alignment": "center",
+        "wrap": false
+      },
+      {
+        "alignment": "center",
+        "wrap": false
+      },
+      {
+        "alignment": "left",
+        "wrap": false
+      },
+      {
+        "alignment": "left",
+        "wrap": false
+      },
+      {
+        "alignment": "left",
+        "wrap": false
+      },
+      {
+        "alignment": "left",
+        "wrap": false
+      }
+    ]
+  }
 }
