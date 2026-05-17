@@ -1,7 +1,7 @@
 {
   "id": "airport_board",
   "name": "Airport Board",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Display live flight information near a configurable airport.",
   "author": "FiestaBoard Team",
   "icon": "plane",
